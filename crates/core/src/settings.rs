@@ -242,6 +242,7 @@ pub struct Settings {
     pub shortcut_settings: bool,
 
     // Appearance
+    pub minimize_to_tray: bool,
     pub custom_font_path: String,
     pub ui_scale: f32,
 
@@ -303,9 +304,9 @@ impl Default for Settings {
             shortcut_player: false,
             shortcut_studio: false,
             shortcut_settings: false,
+            minimize_to_tray: true,
             custom_font_path: String::new(),
             ui_scale: 1.0,
-            minimize_to_tray: true,
             verbose_logging: false,
         }
     }

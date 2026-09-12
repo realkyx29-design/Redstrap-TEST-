@@ -5,6 +5,10 @@
 </p>
 
 <p align="center">
+  Forked from <a href="https://github.com/Froststrap/Froststrap">Froststrap</a>.
+</p>
+
+<p align="center">
   <img src="./assets/icon/icon.png" height="128" alt="Red Strap logo"/>
 </p>
 

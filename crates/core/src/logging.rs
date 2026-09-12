@@ -112,7 +112,7 @@ impl<'a> MakeWriter<'a> for RingMakeWriter {
         }
     }
 
-    fn make_writer_for(&'a self, meta: &tracing::Metadata<'a>) -> Self::Writer {
+    fn make_writer_for(&'a self, meta: &tracing::Metadata<'_>) -> Self::Writer {
         RingWriter {
             ring: self.ring.clone(),
             level: meta.level().as_str(),
@@ -206,7 +206,7 @@ where
         }
     }
 
-    fn make_writer_for(&'a self, meta: &tracing::Metadata<'a>) -> Self::Writer {
+    fn make_writer_for(&'a self, meta: &tracing::Metadata<'_>) -> Self::Writer {
         TeeWriter {
             file: self.file.make_writer_for(meta),
             ring: self.ring.make_writer_for(meta),

@@ -6,7 +6,7 @@
 //! whose recorded signature matches is never fetched again. Progress flows
 //! to the caller through a single `FnMut` sink.
 
-use std::collections::HashMap;
+use std::collections::{BTreeMap, HashMap};
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::sync::atomic::{AtomicU64, Ordering};
@@ -552,12 +552,16 @@ pub fn apply_customization(
 /// cap, the MSAA sample count, and the VSync kill-switch.
 fn gbs_updates(settings: &Settings) -> std::collections::BTreeMap<(String, String), String> {
     use crate::gbs::*;
-    let mut updates = std::collections::BTreeMap::new();
-    let mut put = |key: (&str, &str), value: &str| {
+    let mut updates = BTreeMap::new();
+    fn put(
+        updates: &mut BTreeMap<(String, String), String>,
+        key: (&str, &str),
+        value: &str,
+    ) {
         updates.insert((key.1.to_string(), key.0.to_string()), value.to_string());
-    };
+    }
     if let Some(cap) = settings.gbs_framerate_cap {
-        put(PROP_FRAMERATE_CAP, &cap.to_string());
+        put(&mut updates, PROP_FRAMERATE_CAP, &cap.to_string());
     }
     // The FPS cap mirrors into the settings file so builds that ignore the
     // fast flag still obey it; an explicit GBS cap takes precedence.
@@ -570,10 +574,10 @@ fn gbs_updates(settings: &Settings) -> std::collections::BTreeMap<(String, Strin
             .or_insert_with(|| settings.fps_cap.to_string());
     }
     if let Some(level) = settings.msaa.flag_value() {
-        put(PROP_MSAALEVEL, level);
+        put(&mut updates, PROP_MSAALEVEL, level);
     }
     if settings.disable_vsync {
-        put(PROP_VSYNC, "True");
+        put(&mut updates, PROP_VSYNC, "True");
     }
     updates
 }

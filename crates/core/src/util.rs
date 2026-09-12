@@ -403,30 +403,15 @@ fn run_opener(program: &str, target: &str) -> Result<()> {
 }
 
 #[cfg(windows)]
-fn shell_execute(operation: &str, target: &str) -> Result<()> {
-    use windows_sys::Win32::UI::Shell::ShellExecuteW;
-
-    let op = to_wide(operation);
-    let file = to_wide(target);
-    // A return value greater than 32 signals success.
-    let result = unsafe {
-        ShellExecuteW(
-            0,
-            op.as_ptr(),
-            file.as_ptr(),
-            std::ptr::null(),
-            std::ptr::null(),
-            1, // SW_SHOWNORMAL
-        )
-    };
-    if result > 32 {
-        Ok(())
-    } else {
-        Err(Error::Other(format!(
-            "the system could not open '{}' (error {})",
-            target, result
-        )))
-    }
+fn shell_execute(_operation: &str, target: &str) -> Result<()> {
+    std::process::Command::new("explorer")
+        .arg(target)
+        .stdin(std::process::Stdio::null())
+        .stdout(std::process::Stdio::null())
+        .stderr(std::process::Stdio::null())
+        .spawn()
+        .map(|_| ())
+        .map_err(|e| Error::Other(format!("failed to run explorer: {e}")))
 }
 
 // ---------------------------------------------------------------------------

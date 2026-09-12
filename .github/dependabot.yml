@@ -3,12 +3,8 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
+      interval: "weekly"
+  - package-ecosystem: "cargo"
     directory: "/"
     schedule:
-      interval: "daily"
-  - package-ecosystem: "gitsubmodule"
-    directory: "/"
-    schedule:
-      interval: "daily"
+      interval: "weekly"

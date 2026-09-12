@@ -1,0 +1,48 @@
+[workspace]
+resolver = "2"
+members = ["crates/core", "crates/bootstrap", "crates/desktop"]
+
+[workspace.package]
+edition = "2021"
+rust-version = "1.76"
+license = "MIT"
+authors = ["Red Strap Contributors"]
+repository = "https://github.com/realkyx29-design/Redstrap-TEST-"
+
+# Centralised dependency versions so every crate resolves identically.
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tracing-appender = "0.2"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync", "fs", "net", "process", "io-util"] }
+reqwest = { version = "0.12", features = ["json", "stream"] }
+clap = { version = "4", features = ["derive"] }
+eframe = "0.28"
+rfd = "0.15"
+tray-icon = "0.15"
+muda = "0.14"
+image = { version = "0.25", default-features = false, features = ["png"] }
+quick-xml = "0.37"
+md-5 = "0.10"
+libc = "0.2"
+zip = "2"
+windows-sys = { version = "0.52", features = [
+  "Win32_Foundation",
+  "Win32_Security",
+  "Win32_System_Console",
+  "Win32_System_Diagnostics_ToolHelp",
+  "Win32_System_Registry",
+  "Win32_System_Threading",
+  "Win32_UI_Shell",
+] }
+embed-resource = "2"
+
+redstrap-core = { path = "crates/core" }
+redstrap-bootstrap = { path = "crates/bootstrap" }
+
+[profile.release]
+opt-level = 3
+strip = true

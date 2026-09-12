@@ -1,0 +1,23 @@
+[package]
+name = "redstrap-bootstrap"
+version = "1.0.0"
+edition = "2021"
+description = "Red Strap bootstrapper: installs, updates, launches, and watches Roblox"
+license = "MIT"
+
+[[bin]]
+name = "RedStrap"
+path = "src/main.rs"
+
+[dependencies]
+redstrap-core = { path = "../core" }
+clap = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+reqwest = { workspace = true }
+zip = { workspace = true }
+
+[build-dependencies]
+embed-resource = "2.5.2"

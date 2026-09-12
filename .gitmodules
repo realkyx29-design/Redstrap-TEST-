@@ -1,7 +1,0 @@
-[submodule "wpfui"]
-	path = wpfui
-	url = https://github.com/RealMeddsam/wpfui.git
-
-[submodule "ColorPicker"]
-	path = ColorPicker
-	url = https://github.com/Froststrap/ColorPicker

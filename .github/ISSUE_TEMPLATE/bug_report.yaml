@@ -19,8 +19,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: Froststrap Version
-      description: "What version of Froststrap are you using?"
+      label: Red Strap Version
+      description: "What version of Red Strap are you using?"
       placeholder: "v1.2.3"
     validations:
       required: true
@@ -52,7 +52,7 @@ body:
   - type: textarea
     id: log
     attributes:
-      label: Froststrap Log
-      description: If you're getting a Froststrap Exception error, upload your log file here. Otherwise, just leave it empty.
+      label: Red Strap Log
+      description: If you're getting a Red Strap Exception error, upload your log file here. Otherwise, just leave it empty.
       value: "N/A"
       render: text

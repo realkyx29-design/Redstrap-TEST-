@@ -1,6 +1,6 @@
 //! Launch page: confirmation, multi-instance, priority, channel, updates.
 
-use eframe::egui::{self, RichText};
+use eframe::egui::self;
 
 use crate::app::RedStrapApp;
 use crate::ui::{theme, widgets};
@@ -276,5 +276,4 @@ pub(crate) fn show(app: &mut RedStrapApp, ui: &mut egui::Ui) {
         ui,
         "Update checks run at startup and from the About page.",
     );
-    let _ = RichText::new("");
 }

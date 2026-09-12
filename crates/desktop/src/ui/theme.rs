@@ -121,7 +121,7 @@ fn build_visuals() -> egui::Visuals {
     visuals.selection.bg_fill = ACCENT_SOFT;
     visuals.selection.stroke = Stroke::new(1.0, ACCENT);
 
-    let rounding = egui::Rounding::same(7);
+    let rounding = egui::Rounding::same(7.0);
 
     visuals.widgets.noninteractive.bg_fill = Color32::from_rgb(0x23, 0x23, 0x2A);
     visuals.widgets.noninteractive.weak_bg_fill = Color32::from_rgb(0x23, 0x23, 0x2A);
@@ -156,9 +156,9 @@ fn build_visuals() -> egui::Visuals {
 
     visuals.window_rounding = rounding;
     visuals.window_shadow = egui::epaint::Shadow {
-        offset: [0, 8],
-        blur: 24,
-        spread: 0,
+        offset: egui::vec2(0.0, 8.0),
+        blur: 24.0,
+        spread: 0.0,
         color: Color32::from_black_alpha(120),
     };
     visuals.popup_shadow = visuals.window_shadow;
@@ -173,14 +173,14 @@ pub fn accent_button(text: &str) -> egui::Button {
     )
     .fill(ACCENT)
     .stroke(Stroke::NONE)
-    .rounding(egui::Rounding::same(7))
+    .rounding(egui::Rounding::same(7.0))
     .min_size(egui::vec2(120.0, 30.0))
 }
 
 /// Muted button (secondary actions).
 pub fn ghost_button(text: &str) -> egui::Button {
     egui::Button::new(egui::RichText::new(text).color(Color32::from_rgb(0xD8, 0xD8, 0xDE)))
-        .rounding(egui::Rounding::same(7))
+        .rounding(egui::Rounding::same(7.0))
         .min_size(egui::vec2(100.0, 28.0))
 }
 
@@ -191,7 +191,7 @@ pub fn page_title(ui: &mut egui::Ui, title: &str, subtitle: &str) {
         let (rect, _) = ui.allocate_exact_size(egui::vec2(4.0, bar_height), egui::Sense::hover());
         ui.painter().rect_filled(
             rect,
-            egui::Rounding::same(2),
+            egui::Rounding::same(2.0),
             ACCENT,
         );
         ui.vertical(|ui| {

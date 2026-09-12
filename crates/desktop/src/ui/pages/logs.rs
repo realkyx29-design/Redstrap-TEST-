@@ -24,7 +24,11 @@ pub(crate) fn show(app: &mut RedStrapApp, ui: &mut egui::Ui) {
     ui.add_space(4.0);
     ui.horizontal(|ui| {
         if ui.add(theme::ghost_button("Copy visible")).clicked() {
-            let text = visible_lines(app).join("\n");
+            let text = visible_lines(app)
+                .into_iter()
+                .map(|(_, rendered)| rendered)
+                .collect::<Vec<_>>()
+                .join("\n");
             ui.ctx().copy_text(text);
             app.toast("Logs copied");
         }

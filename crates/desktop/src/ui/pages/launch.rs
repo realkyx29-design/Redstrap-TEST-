@@ -1,6 +1,6 @@
 //! Launch page: confirmation, multi-instance, priority, channel, updates.
 
-use eframe::egui::{self};
+use eframe::egui::{self, RichText};
 
 use crate::app::RedStrapApp;
 use crate::ui::{theme, widgets};

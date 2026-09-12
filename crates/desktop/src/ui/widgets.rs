@@ -72,7 +72,7 @@ impl SettingOption for redstrap_core::settings::GpuPreference {
 }
 
 /// Dropdown for a settings enum. Returns true when the value changed.
-pub fn enum_combo<E: SettingOption>(
+pub fn enum_combo<E: SettingOption + 'static>(
     ui: &mut egui::Ui,
     id: &str,
     current: &mut E,

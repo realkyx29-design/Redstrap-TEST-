@@ -14,8 +14,8 @@ pub const ACCENT_ACTIVE: Color32 = Color32::from_rgb(0xB8, 0x14, 0x24);
 /// Soft red tint for selection backgrounds.
 pub const ACCENT_SOFT: Color32 = Color32::from_rgb(0x5A, 0x1A, 0x22);
 
-const INTER: &[u8] = include_bytes!("../../../assets/fonts/Inter-Variable.ttf");
-const JETBRAINS_REGULAR: &[u8] = include_bytes!("../../../assets/fonts/JetBrainsMono-Regular.ttf");
+const INTER: &[u8] = include_bytes!("../../assets/fonts/Inter-Variable.ttf");
+const JETBRAINS_REGULAR: &[u8] = include_bytes!("../../assets/fonts/JetBrainsMono-Regular.ttf");
 
 /// Window/tray icon source (256 px PNG with alpha).
 pub const ICON_PNG: &[u8] = include_bytes!("../../../../assets/icon/icon.png");

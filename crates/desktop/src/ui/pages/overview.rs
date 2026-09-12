@@ -132,8 +132,8 @@ fn install_card(app: &mut RedStrapApp, ui: &mut egui::Ui, mode: LaunchMode) {
 
     egui::Frame::group(ui.style())
         .fill(Color32::from_rgb(0x1E, 0x1E, 0x25))
-        .rounding(egui::Rounding::same(8))
-        .inner_margin(egui::Margin::same(12))
+        .rounding(egui::Rounding::same(8.0))
+        .inner_margin(egui::Margin::same(12.0))
         .show(ui, |ui| {
             ui.set_min_width(200.0);
             ui.label(RichText::new(mode.label()).size(17.0).strong());
@@ -247,8 +247,8 @@ fn short_job(job: &str) -> String {
 fn stat_box(ui: &mut egui::Ui, label: &str, value: &str) {
     egui::Frame::group(ui.style())
         .fill(Color32::from_rgb(0x1E, 0x1E, 0x25))
-        .rounding(egui::Rounding::same(8))
-        .inner_margin(egui::Margin::same(10))
+        .rounding(egui::Rounding::same(8.0))
+        .inner_margin(egui::Margin::same(10.0))
         .show(ui, |ui| {
             ui.set_min_width(110.0);
             ui.label(RichText::new(value).size(18.0).strong());

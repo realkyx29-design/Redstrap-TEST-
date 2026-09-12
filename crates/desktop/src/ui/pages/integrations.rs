@@ -133,7 +133,7 @@ pub(crate) fn show(app: &mut RedStrapApp, ui: &mut egui::Ui) {
     let mut browse = None;
     for (index, integration) in app.settings.custom_integrations.iter_mut().enumerate() {
         egui::Frame::group(ui.style())
-            .inner_margin(egui::Margin::same(8))
+            .inner_margin(egui::Margin::same(8.0))
             .show(ui, |ui| {
                 ui.horizontal(|ui| {
                     ui.label("Name:");

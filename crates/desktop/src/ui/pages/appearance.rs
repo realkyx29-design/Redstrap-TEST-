@@ -107,7 +107,7 @@ fn swatch(ui: &mut egui::Ui, label: &str, color: Color32) {
     ui.vertical(|ui| {
         let (rect, _) = ui.allocate_exact_size(egui::vec2(44.0, 28.0), egui::Sense::hover());
         ui.painter()
-            .rect_filled(rect, egui::Rounding::same(6), color);
+            .rect_filled(rect, egui::Rounding::same(6.0), color);
         ui.label(RichText::new(label).small());
     });
 }

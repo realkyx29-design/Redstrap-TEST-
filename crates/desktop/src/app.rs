@@ -926,11 +926,3 @@ impl RedStrapApp {
         }
     }
 }
-> {
-                self.flags = FlagStore::new();
-                self.save_flags();
-                self.toast("All fast flags cleared");
-            }
-        }
-    }
-}

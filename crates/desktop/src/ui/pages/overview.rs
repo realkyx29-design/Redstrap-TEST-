@@ -155,7 +155,7 @@ fn install_card(app: &mut RedStrapApp, ui: &mut egui::Ui, mode: LaunchMode) {
                 widgets::status_pill(ui, "Not installed", widgets::muted());
             }
 
-            if let Some(job) = job {
+            if let Some(ref job) = job {
                 ui.add_space(4.0);
                 ui.label(RichText::new(&job.text).small());
                 match job.fraction {

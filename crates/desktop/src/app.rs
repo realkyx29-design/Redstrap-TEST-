@@ -115,7 +115,7 @@ pub(crate) struct SyncJob {
     pub fraction: Option<f32>,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub(crate) struct GamePreview {
     pub place_id: u64,
     pub name: String,
@@ -496,6 +496,10 @@ impl RedStrapApp {
             self.settings.update_repo.clone(),
             self.settings.update_check,
         );
+    }
+
+    pub(crate) fn cached_texture(&self, key: &str) -> Option<TextureHandle> {
+        self.textures.get(key).cloned()
     }
 
     /// Decode PNG bytes into a cached texture.

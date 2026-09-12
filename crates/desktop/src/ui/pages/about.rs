@@ -61,7 +61,7 @@ pub(crate) fn show(app: &mut RedStrapApp, ui: &mut egui::Ui) {
                     &app.rt,
                     app.http.clone(),
                     app.tx.clone(),
-                    release,
+                    release.clone(),
                     app.layout.application.clone(),
                 );
             }

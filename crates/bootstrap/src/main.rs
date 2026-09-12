@@ -367,7 +367,7 @@ pub(crate) fn confirm(prompt: &str) -> bool {
 
 fn open_settings_ui(
     layout: &redstrap_core::paths::Layout,
-    pub(crate) quiet: bool,
+    quiet: bool,
 ) -> Result<()> {
     let exe_name = if cfg!(windows) {
         "RedStrap-Settings.exe"
@@ -403,7 +403,7 @@ fn open_settings_ui(
 async fn background_update(
     client: &reqwest::Client,
     layout: &redstrap_core::paths::Layout,
-    pub(crate) settings: &redstrap_core::settings::Settings,
+    settings: &redstrap_core::settings::Settings,
 ) -> Result<()> {
     use redstrap_core::settings::UpdateChannel;
 

@@ -173,7 +173,7 @@ pub fn spawn_stage_update(
     launcher_target: std::path::PathBuf,
 ) {
     rt.spawn(async move {
-        let outcome: Result<(), redstrap_core::error::Error> = async {
+        let outcome: std::result::Result<(), redstrap_core::error::Error> = async {
             // The launcher first: it is never the running process here.
             redstrap_core::updater::swap_with_download(
                 &http,

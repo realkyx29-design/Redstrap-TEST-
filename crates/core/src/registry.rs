@@ -261,7 +261,7 @@ mod imp {
         } else {
             Err(Error::Registry(format!(
                 "could not delete value in '{subkey}' (error {status})"
-            )));
+            )))
         }
     }
 }

@@ -5,8 +5,6 @@
 //! protocols and shortcuts. Uninstall removes all of it, including the
 //! downloaded Roblox versions that live inside the install directory.
 
-#[cfg(windows)]
-#[cfg(windows)]
 use std::path::Path;
 
 use redstrap_core::error::{Error, Result};

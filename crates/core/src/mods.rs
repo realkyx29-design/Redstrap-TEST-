@@ -173,8 +173,6 @@ pub fn install_from_zip(
     mods_dir: &Path,
     wanted_name: &str,
 ) -> Result<PathBuf> {
-    use std::io::Read;
-
     let file =
         std::fs::File::open(zip_path).map_err(|e| Error::with_path(&zip_path.to_path_buf(), e))?;
     let mut archive = zip::ZipArchive::new(file)

@@ -60,7 +60,7 @@ pub fn read_properties(xml: &str) -> Result<Vec<Property>> {
             Event::Text(text) => {
                 if let (Some(class), Some(name)) = (current_class.clone(), current_name.clone()) {
                     let value = text
-                        .decode()
+                        .unescape()
                         .map_err(|e| Error::GameSettings(format!("could not decode XML text: {e}")))?
                         .into_owned();
                     out.push(Property { class, name, value });
@@ -185,9 +185,7 @@ fn merge_document(
 
 
     loop {
-        let event = reader.read_event_into(&mut buf).map_err(|e| {
-            Error::GameSettings(format!("could not parse settings XML: {e}"))
-        })?;
+        let event = reader.read_event_into(&mut buf).map_err(write_err)?;
         match event {
             Event::Start(tag) => {
                 if tag.name() == QName(b"Item") {
@@ -196,10 +194,10 @@ fn merge_document(
                 } else if tag.name() == QName(b"Property") {
                     current_name = attr_value(&tag, b"name")?;
                 }
-                writer.write_event(Event::Start(tag)).map_err(write_err)?;
+                writer.write_event(Event::Start(tag)).map_err(write_io_err)?;
             }
             Event::Empty(tag) => {
-                writer.write_event(Event::Empty(tag)).map_err(write_err)?;
+                writer.write_event(Event::Empty(tag)).map_err(write_io_err)?;
             }
             Event::Text(text) => {
                 let key = match (current_class.clone(), current_name.clone()) {
@@ -216,7 +214,7 @@ fn merge_document(
                     },
                     None => Event::Text(text),
                 };
-                writer.write_event(replacement).map_err(write_err)?;
+                writer.write_event(replacement).map_err(write_io_err)?;
                 current_name = None;
             }
             Event::End(tag) => {
@@ -247,18 +245,18 @@ fn merge_document(
                         );
                         writer
                             .write_event(Event::Text(BytesText::from_escaped(xml)))
-                            .map_err(write_err)?;
+                            .map_err(write_io_err)?;
                     }
                 }
                 if tag.name() == QName(b"Item") {
                     current_class = None;
                 }
                 current_name = None;
-                writer.write_event(Event::End(tag)).map_err(write_err)?;
+                writer.write_event(Event::End(tag)).map_err(write_io_err)?;
             }
             Event::Eof => break,
             other => {
-                writer.write_event(other).map_err(write_err)?;
+                writer.write_event(other).map_err(write_io_err)?;
             }
         }
         buf.clear();
@@ -270,6 +268,10 @@ fn merge_document(
 
 fn write_err(e: quick_xml::errors::Error) -> Error {
     Error::GameSettings(format!("settings XML error: {e}"))
+}
+
+fn write_io_err(e: std::io::Error) -> Error {
+    Error::GameSettings(format!("settings XML I/O error: {e}"))
 }
 
 fn xml_escape(text: &str) -> String {

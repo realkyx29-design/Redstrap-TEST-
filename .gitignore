@@ -15,8 +15,8 @@ target/
 Thumbs.db
 
 # Local run artifacts (installed data dir copies, ad-hoc binaries).
-build/
-dist/
+/build/
+/dist/
 *.log
 *.old
 *-new

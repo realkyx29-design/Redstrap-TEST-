@@ -21,7 +21,10 @@ fn main() {
             slash(src.join("app.manifest")),
             slash(src.join("icon.ico")),
         );
-        std::fs::write(&out, rc).expect("write generated rc file");
+        if let Err(error) = std::fs::write(&out, rc) {
+            eprintln!("failed to write generated resource script: {error}");
+            std::process::exit(1);
+        }
         embed_resource::compile(&out, embed_resource::NONE);
 
         println!("cargo:rerun-if-changed=build/windows/app.manifest");

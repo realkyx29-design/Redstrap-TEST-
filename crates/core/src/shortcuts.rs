@@ -270,7 +270,7 @@ async fn fetch_game_icon(
     }
     let universe_url = format!("https://apis.{domain}/universes/v1/places/{place_id}/universe");
     let universe: UniverseResponse =
-        match crate::http::get_json(client, &universe_url).await {
+        match crate::http::get_json::<UniverseResponse>(client, &universe_url).await {
             Ok(u) if u.universe_id > 0 => u,
             _ => return false,
         };

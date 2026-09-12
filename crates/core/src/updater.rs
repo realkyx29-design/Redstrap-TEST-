@@ -115,18 +115,6 @@ pub async fn download_and_swap(
     let current_exe = std::env::current_exe().map_err(|e| {
         Error::Update(format!("could not locate the running executable: {e}"))
     })?;
-    let dir = current_exe
-        .parent()
-        .ok_or_else(|| Error::Update(String::from("executable has no parent directory")))?;
-    let new_file = dir.join(format!(
-        "{}-{}",
-        current_exe
-            .file_name()
-            .and_then(|n| n.to_str())
-            .unwrap_or("RedStrap.exe"),
-        "new"
-    ));
-
     swap_with_download(client, &asset.download_url, &current_exe, on_progress).await?;
     Ok(current_exe)
 }
